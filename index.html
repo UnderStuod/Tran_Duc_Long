@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +13,7 @@
         }
 
         body {
-            background: #f5f5f5;   /* light grey background for contrast */
+            background: #f5f5f5;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.5;
             color: #1e1e1e;
@@ -23,7 +22,6 @@
             justify-content: center;
         }
 
-        /* ----- paper-like card (no colors, just structure) ----- */
         .cv-container {
             max-width: 1000px;
             width: 100%;
@@ -31,6 +29,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.05);
             padding: 2.8rem 2.8rem 2.8rem 2.8rem;
             border: 1px solid #eaeaea;
+            position: relative;
         }
 
         /* ---------- HEADER ---------- */
@@ -73,6 +72,14 @@
         /* ---------- SECTION GLOBAL ---------- */
         .section {
             margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-title {
@@ -86,16 +93,32 @@
             color: #000;
         }
 
-        /* ---------- CAREER OBJECTIVE ---------- */
+        /* ---------- CAREER OBJECTIVE (typing effect) ---------- */
         .objective-text {
             font-size: 0.98rem;
             color: #1e1e1e;
             padding-right: 0.5rem;
             margin-bottom: 0.2rem;
+            min-height: 4rem;
         }
 
         .objective-text strong {
             font-weight: 700;
+        }
+
+        .cursor-blink {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background-color: #222;
+            animation: blink 0.8s step-end infinite;
+            vertical-align: text-bottom;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         /* ---------- EDUCATION ---------- */
@@ -207,213 +230,349 @@
             color: #1a1a1a;
         }
 
-        /* single column for small screens, but keep it clean */
+        /* ---------- TOOLS (hover effect) ---------- */
+        .tools-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 2.5rem;
+            row-gap: 0.8rem;
+        }
+
+        .tools-group {
+            transition: all 0.2s ease;
+        }
+
+        .tools-group:hover {
+            transform: scale(1.02);
+            background-color: #f8f8f8;
+            padding: 0.2rem 0.5rem;
+            margin: -0.2rem -0.5rem;
+            border-radius: 4px;
+            box-shadow: 0 0 0 1px #ddd;
+        }
+
+        .tools-group .label {
+            font-weight: 600;
+            margin-bottom: 0.1rem;
+        }
+
+        .tools-group .items {
+            font-size: 0.95rem;
+        }
+
+        /* ---------- DOWNLOAD BUTTON (dynamic) ---------- */
+        .download-btn {
+            position: absolute;
+            top: 1.8rem;
+            right: 2.8rem;
+            background: #111;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            text-transform: uppercase;
+            z-index: 10;
+        }
+
+        .download-btn:hover {
+            background: #333;
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .download-btn:active {
+            transform: scale(0.96);
+        }
+
+        .download-btn i {
+            margin-right: 6px;
+        }
+
         @media (max-width: 640px) {
+            .download-btn {
+                position: static;
+                margin-top: 0.5rem;
+                display: inline-block;
+                width: 100%;
+                text-align: center;
+                border-radius: 6px;
+                padding: 0.6rem;
+            }
             .cv-container {
                 padding: 1.8rem 1.2rem;
             }
             .skill-block {
                 grid-template-columns: 1fr;
-                gap: 0.2rem;
             }
             .header {
                 flex-direction: column;
             }
             .contact-line {
                 margin-top: 0.4rem;
-                gap: 0.3rem 0.8rem;
             }
         }
 
-        /* additional tweaks for inline lists */
-        .inline-list {
-            display: inline;
+        /* toast notification (simulated) */
+        .toast-message {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: #222;
+            color: #fff;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: all 0.4s ease;
+            pointer-events: none;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            white-space: nowrap;
         }
 
-        .inline-list span {
-            margin-right: 0.3rem;
+        .toast-message.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
 
-        /* ---------- LANGUAGES ---------- */
         .lang-item {
             font-size: 0.97rem;
         }
-
         .lang-item strong {
             font-weight: 600;
-        }
-
-        .subnote {
-            font-size: 0.9rem;
-            color: #2b2b2b;
-            margin-top: 0.1rem;
-        }
-
-        /* spacing helpers */
-        .mt-1 { margin-top: 0.5rem; }
-        .mb-0 { margin-bottom: 0; }
-
-        /*  small badges for "system" etc, but no color */
-        .tech-group {
-            display: flex;
-            flex-wrap: wrap;
-            column-gap: 1.2rem;
-            row-gap: 0.25rem;
         }
     </style>
 </head>
 <body>
-<div class="cv-container">
+    <!-- Toast notification -->
+    <div id="toast" class="toast-message">📄 Đang tải CV ...</div>
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="name-title">
-            <h1>TRAN DUC LONG</h1>
-            <div class="contact-line">
-                <span>Phu Tho Hoa Ward, Ho Chi Minh City, Vietnam</span>
-                <span class="separator">•</span>
-                <span>0932986108</span>
-                <span class="separator">•</span>
-                <span>longductran79@outlook.com</span>
+    <div class="cv-container">
+        <!-- Download button (simulated) -->
+        <button class="download-btn" id="downloadCV">⬇ Tải CV (PDF)</button>
+
+        <!-- HEADER -->
+        <header class="header">
+            <div class="name-title">
+                <h1>TRAN DUC LONG</h1>
+                <div class="contact-line">
+                    <span>Phu Tho Hoa Ward, Ho Chi Minh City, Vietnam</span>
+                    <span class="separator">•</span>
+                    <span>0932986108</span>
+                    <span class="separator">•</span>
+                    <span>longductran79@outlook.com</span>
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <!-- CAREER OBJECTIVE -->
-    <section class="section">
-        <h2 class="section-title">CAREER OBJECTIVE</h2>
-        <p class="objective-text">
-            <strong>Final-year Information Security student</strong> with a strong foundation in computer networking, Linux/Windows operating systems, and system security.<br>
-            Seeking an <strong>internship position in Security / Network / System Administration</strong> to gain hands-on industry experience, improve technical skills, and contribute to building secure and reliable IT infrastructures.
-        </p>
-    </section>
+        <!-- CAREER OBJECTIVE with typing -->
+        <section class="section visible" id="objective-section">
+            <h2 class="section-title">CAREER OBJECTIVE</h2>
+            <div id="typing-container" class="objective-text">
+                <!-- text will be injected by JS -->
+                <span id="typed-text"></span><span class="cursor-blink">|</span>
+            </div>
+        </section>
 
-    <!-- EDUCATION -->
-    <section class="section">
-        <h2 class="section-title">EDUCATION</h2>
-        <div class="edu-item">
-            <span class="school">Ho Chi Minh City University of Industry and Trade (HUIT)</span>
-            <span class="date">September 2023 – Present</span>
-        </div>
-        <div class="edu-details">
-            <ul>
-                <li><strong>Bachelor of Information Security</strong> · Status: Final-year student</li>
-                <li><strong>Relevant Coursework:</strong> Computer Networking, Vulnerability Analysis & Penetration Testing, Web Security, Operating System Security, …</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- EXPERIENCES / PROJECTS -->
-    <section class="section">
-        <h2 class="section-title">EXPERIENCES · PROJECTS</h2>
-
-        <div class="project-item">
-            <span class="project-head">SOPHOS Firewall Lab Environment Deployment</span>
-            <div class="project-desc">
+        <!-- EDUCATION -->
+        <section class="section" id="edu-section">
+            <h2 class="section-title">EDUCATION</h2>
+            <div class="edu-item">
+                <span class="school">Ho Chi Minh City University of Industry and Trade (HUIT)</span>
+                <span class="date">September 2023 – Present</span>
+            </div>
+            <div class="edu-details">
                 <ul>
-                    <li>Built a simulated enterprise network environment using SOPHOS Firewall</li>
-                    <li>Implemented network segmentation including LAN / WAN / DMZ</li>
-                    <li>Configured firewall rules, NAT, Web Filtering, and access control policies</li>
-                    <li>Performed penetration testing and monitored network traffic</li>
+                    <li><strong>Bachelor of Information Security</strong> · Status: Final-year student</li>
+                    <li><strong>Relevant Coursework:</strong> Computer Networking, Vulnerability Analysis & Penetration Testing, Web Security, Operating System Security, …</li>
                 </ul>
             </div>
-        </div>
+        </section>
 
-        <div class="project-item">
-            <span class="project-head">IDS/IPS System Implementation (Snort, iptables, …)</span>
-            <div class="project-desc">
-                <ul>
-                    <li>Deployed Intrusion Detection System using Snort on Linux (Ubuntu Server)</li>
-                    <li>Developed and customized Snort rules to detect basic network attacks</li>
-                    <li>Integrated iptables for automatic blocking of malicious IP addresses</li>
-                    <li>Simulated attacks from Kali Linux (hping3, nmap, etc.) to test the system</li>
-                </ul>
-            </div>
-        </div>
+        <!-- EXPERIENCES / PROJECTS -->
+        <section class="section" id="exp-section">
+            <h2 class="section-title">EXPERIENCES · PROJECTS</h2>
 
-        <div class="project-item">
-            <span class="project-head">Cloud-Integrated Coffee E‑commerce Website</span>
-            <div class="project-desc">
-                <ul>
-                    <li>Developed user interface using HTML, CSS / JavaScript with Bootstrap integration</li>
-                    <li>Integrated Firebase for data storage (order information, login logs, etc.) with real-time synchronization</li>
-                    <li>Used Cloudinary for storing and managing product images to support Firebase data storage</li>
-                </ul>
+            <div class="project-item">
+                <span class="project-head">SOPHOS Firewall Lab Environment Deployment</span>
+                <div class="project-desc">
+                    <ul>
+                        <li>Built a simulated enterprise network environment using SOPHOS Firewall</li>
+                        <li>Implemented network segmentation including LAN / WAN / DMZ</li>
+                        <li>Configured firewall rules, NAT, Web Filtering, and access control policies</li>
+                        <li>Performed penetration testing and monitored network traffic</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </section>
 
-    <!-- PROGRAMMING LANGUAGES -->
-    <section class="section">
-        <h2 class="section-title">PROGRAMMING LANGUAGES</h2>
-        <div class="skill-block" style="grid-template-columns: 1fr;">
-            <div class="skill-item">
-                <span class="label">Languages:</span>
-                <span class="value">C / C++, C#, Python, HTML, CSS, PHP, JavaScript, NodeJS, Shell Scripting (Bash)</span>
+            <div class="project-item">
+                <span class="project-head">IDS/IPS System Implementation (Snort, iptables, …)</span>
+                <div class="project-desc">
+                    <ul>
+                        <li>Deployed Intrusion Detection System using Snort on Linux (Ubuntu Server)</li>
+                        <li>Developed and customized Snort rules to detect basic network attacks</li>
+                        <li>Integrated iptables for automatic blocking of malicious IP addresses</li>
+                        <li>Simulated attacks from Kali Linux (hping3, nmap, etc.) to test the system</li>
+                    </ul>
+                </div>
             </div>
-            <div class="skill-item">
-                <span class="label">Database:</span>
-                <span class="value">SQL Server, MySQL</span>
-            </div>
-        </div>
-    </section>
 
-    <!-- SYSTEM & SECURITY KNOWLEDGE -->
-    <section class="section">
-        <h2 class="section-title">SYSTEM AND SECURITY KNOWLEDGE</h2>
-        <div class="skill-block" style="grid-template-columns: 1fr 1.5fr;">
-            <div class="skill-item">
-                <span class="label">Linux:</span>
-                <span class="value">RHEL, CentOS, Ubuntu</span>
+            <div class="project-item">
+                <span class="project-head">Cloud-Integrated Coffee E‑commerce Website</span>
+                <div class="project-desc">
+                    <ul>
+                        <li>Developed user interface using HTML, CSS / JavaScript with Bootstrap integration</li>
+                        <li>Integrated Firebase for data storage (order information, login logs, etc.) with real-time synchronization</li>
+                        <li>Used Cloudinary for storing and managing product images to support Firebase data storage</li>
+                    </ul>
+                </div>
             </div>
-            <div class="skill-item">
-                <span class="label">Windows:</span>
-                <span class="value">Windows Server: MCSA 2016</span>
-            </div>
-            <div class="skill-item">
-                <span class="label">Network:</span>
-                <span class="value">Top 10 OWASP, CEH, …</span>
-            </div>
-        </div>
-        <!-- additional line for clarity -->
-        <div style="margin-top: 0.2rem; font-size: 0.95rem; padding-left: 0.2rem;">
-            <span style="font-weight: 600;">Security concepts:</span> Vulnerability assessment, IDS/IPS, firewall, web security, network traffic analysis
-        </div>
-    </section>
+        </section>
 
-    <!-- TOOLS AND TECHNOLOGIES -->
-    <section class="section">
-        <h2 class="section-title">TOOLS AND TECHNOLOGIES</h2>
-        <div style="display: flex; flex-wrap: wrap; column-gap: 2.5rem; row-gap: 0.8rem;">
-            <div>
-                <div style="font-weight: 600; margin-bottom: 0.1rem;">Code IDE:</div>
-                <div style="font-size: 0.95rem;">Dev-C++, Visual Studio, Visual Studio Code</div>
+        <!-- PROGRAMMING LANGUAGES -->
+        <section class="section" id="lang-section">
+            <h2 class="section-title">PROGRAMMING LANGUAGES</h2>
+            <div class="skill-block" style="grid-template-columns: 1fr;">
+                <div class="skill-item">
+                    <span class="label">Languages:</span>
+                    <span class="value">C / C++, C#, Python, HTML, CSS, PHP, JavaScript, NodeJS, Shell Scripting (Bash)</span>
+                </div>
+                <div class="skill-item">
+                    <span class="label">Database:</span>
+                    <span class="value">SQL Server, MySQL</span>
+                </div>
             </div>
-            <div>
-                <div style="font-weight: 600; margin-bottom: 0.1rem;">Security Testing:</div>
-                <div style="font-size: 0.95rem;">Wireshark, Nmap, hping3, Metasploit, …</div>
-            </div>
-            <div>
-                <div style="font-weight: 600; margin-bottom: 0.1rem;">IDS/IPS:</div>
-                <div style="font-size: 0.95rem;">Snort, iptables, …</div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- LANGUAGE -->
-    <section class="section" style="margin-bottom: 0.5rem;">
-        <h2 class="section-title">LANGUAGE</h2>
-        <div class="lang-item">
-            <strong>English:</strong> Technical reading proficiency (documentation &amp; research papers)
-        </div>
-    </section>
+        <!-- SYSTEM & SECURITY KNOWLEDGE -->
+        <section class="section" id="sys-section">
+            <h2 class="section-title">SYSTEM AND SECURITY KNOWLEDGE</h2>
+            <div class="skill-block" style="grid-template-columns: 1fr 1.5fr;">
+                <div class="skill-item">
+                    <span class="label">Linux:</span>
+                    <span class="value">RHEL, CentOS, Ubuntu</span>
+                </div>
+                <div class="skill-item">
+                    <span class="label">Windows:</span>
+                    <span class="value">Windows Server: MCSA 2016</span>
+                </div>
+                <div class="skill-item">
+                    <span class="label">Network:</span>
+                    <span class="value">Top 10 OWASP, CEH, …</span>
+                </div>
+            </div>
+            <div style="margin-top: 0.2rem; font-size: 0.95rem; padding-left: 0.2rem;">
+                <span style="font-weight: 600;">Security concepts:</span> Vulnerability assessment, IDS/IPS, firewall, web security, network traffic analysis
+            </div>
+        </section>
 
-    <!-- subtle footer (optional) -->
-    <div style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 0.8rem; font-size: 0.7rem; color: #888; text-align: right;">
-        CV – Tran Duc Long
+        <!-- TOOLS AND TECHNOLOGIES (with hover effect) -->
+        <section class="section" id="tools-section">
+            <h2 class="section-title">TOOLS AND TECHNOLOGIES</h2>
+            <div class="tools-wrapper">
+                <div class="tools-group">
+                    <div class="label">Code IDE:</div>
+                    <div class="items">Dev-C++, Visual Studio, Visual Studio Code</div>
+                </div>
+                <div class="tools-group">
+                    <div class="label">Security Testing:</div>
+                    <div class="items">Wireshark, Nmap, hping3, Metasploit, …</div>
+                </div>
+                <div class="tools-group">
+                    <div class="label">IDS/IPS:</div>
+                    <div class="items">Snort, iptables, …</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LANGUAGE -->
+        <section class="section" id="lang-final" style="margin-bottom: 0.5rem;">
+            <h2 class="section-title">LANGUAGE</h2>
+            <div class="lang-item">
+                <strong>English:</strong> Technical reading proficiency (documentation &amp; research papers)
+            </div>
+        </section>
+
+        <div style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 0.8rem; font-size: 0.7rem; color: #888; text-align: right;">
+            CV – Tran Duc Long
+        </div>
     </div>
 
-</div>
-<!-- end cv-container -->
+    <script>
+        (function() {
+            // ----- TYPING EFFECT (CAREER OBJECTIVE) -----
+            const textToType = "Final-year Information Security student with a strong foundation in computer networking, Linux/Windows operating systems, and system security. Seeking an internship position in Security / Network / System Administration to gain hands-on industry experience, improve technical skills, and contribute to building secure and reliable IT infrastructures.";
+
+            const typedSpan = document.getElementById('typed-text');
+            let index = 0;
+            let isTyping = true;
+
+            function typeChar() {
+                if (index < textToType.length) {
+                    typedSpan.textContent += textToType.charAt(index);
+                    index++;
+                    setTimeout(typeChar, 14); // speed
+                } else {
+                    isTyping = false;
+                    // blink cursor remains
+                }
+            }
+
+            // start typing after small delay
+            setTimeout(typeChar, 400);
+
+            // ----- SCROLL REVEAL (intersection observer) -----
+            const sections = document.querySelectorAll('.section:not(.visible)');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -30px 0px'
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // ----- DOWNLOAD BUTTON (simulated) -----
+            const downloadBtn = document.getElementById('downloadCV');
+            const toast = document.getElementById('toast');
+
+            function showToast(message) {
+                toast.textContent = message;
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2200);
+            }
+
+            downloadBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showToast('📄 Đang tải CV ...');
+                // simulate loading, then "done"
+                setTimeout(() => {
+                    showToast('✅ Tải xuống thành công (mô phỏng)');
+                }, 1200);
+            });
+
+            // ----- TOOLTIP / HOVER extra (already in CSS) -----
+
+            // ensure that the first (objective) section is visible
+            document.getElementById('objective-section').classList.add('visible');
+
+        })();
+    </script>
 </body>
 </html>
