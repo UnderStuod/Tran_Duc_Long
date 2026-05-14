@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trần Đức Long · Portfolio</title>
+    <title>TRAN DUC LONG · Portfolio</title>
     <style>
-        /* ----- RESET & GLOBAL ----- */
         * {
             margin: 0;
             padding: 0;
@@ -26,7 +25,6 @@
             background: transparent;
         }
 
-        /* ----- HERO / HEADER (không còn khung giấy) ----- */
         .hero {
             display: flex;
             flex-wrap: wrap;
@@ -74,7 +72,6 @@
             border-bottom-color: #111;
         }
 
-        /* ----- TYING EFFECT (CAREER OBJECTIVE) ----- */
         .typing-section {
             background: #fff;
             padding: 2rem 2rem 2rem 2rem;
@@ -118,7 +115,6 @@
             50% { opacity: 0; }
         }
 
-        /* ----- SECTION GENERAL ----- */
         .section {
             margin-bottom: 3.5rem;
         }
@@ -134,7 +130,6 @@
             padding-bottom: 0.4rem;
         }
 
-        /* ----- EDUCATION ----- */
         .edu-item {
             display: flex;
             flex-wrap: wrap;
@@ -177,7 +172,6 @@
             color: #111;
         }
 
-        /* ----- PROJECTS ----- */
         .project-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -227,7 +221,6 @@
             color: #222;
         }
 
-        /* ----- SKILLS BLOCKS ----- */
         .skill-block {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -252,7 +245,6 @@
             color: #222;
         }
 
-        /* ----- TOOLS (hover effect) ----- */
         .tools-wrapper {
             display: flex;
             flex-wrap: wrap;
@@ -284,7 +276,6 @@
             font-size: 0.95rem;
         }
 
-        /* ----- FOOTER ----- */
         .footer {
             margin-top: 4rem;
             padding-top: 1.5rem;
@@ -319,7 +310,6 @@
             }
         }
 
-        /* Toast (nếu cần download simulation) */
         .toast {
             position: fixed;
             bottom: 2rem;
@@ -366,34 +356,31 @@
 <body>
     <div class="container">
 
-        <!-- Toast notification -->
         <div id="toast" class="toast">📄 Đang tải ...</div>
 
-        <!-- HEADER (Hero) -->
         <header class="hero">
             <div class="hero-left">
-                <h1>Trần Đức Long</h1>
+                <h1>TRAN DUC LONG </h1>
                 <div class="sub-head">Information Security · Final-year</div>
+                <div></div>
             </div>
             <div class="hero-right">
-                <span class="contact-item">📍 Phú Thọ Hòa, HCMC, Vietnam</span>
+                <span class="contact-item">📍 Phu Tho Hoa District, HCMC, Vietnam</span>
                 <span class="contact-item">📞 <a href="tel:0932986108">0932986108</a></span>
-                <span class="contact-item">✉️ <a href="mailto:longductran79@outlook.com">longductran79@outlook.com</a></span>
+                <span class="contact-item">✉️ <a href="mailto:longductran719@outlook.com">longductran719@outlook.com</a></span>
                 <span style="margin-top: 0.4rem; display: inline-block;">
-                    <button class="btn-outline" id="downloadBtn">⬇ Tải CV (PDF)</button>
+                     
                 </span>
             </div>
         </header>
 
-        <!-- TYPING SECTION (Nổi bật) -->
         <div class="typing-section">
-            <div class="label">🎯 Career Objective</div>
+            <div class="label">Career Objective</div>
             <div id="typed-container">
                 <span id="typed-text"></span><span class="cursor-blink">|</span>
             </div>
         </div>
 
-        <!-- EDUCATION -->
         <section class="section">
             <h2 class="section-title">Education</h2>
             <div class="edu-item">
@@ -408,12 +395,13 @@
             </div>
         </section>
 
-        <!-- EXPERIENCES / PROJECTS -->
+        
         <section class="section">
             <h2 class="section-title">Projects</h2>
             <div class="project-grid">
                 <div class="project-card">
-                    <span class="project-head">SOPHOS Firewall Lab</span>
+                    
+                    <span class="project-head"><a href="https://github.com/UnderStuod/SOPHOS-Configuration" target="_blank">SOPHOS Firewall Lab</a></span>
                     <div class="project-desc">
                         <ul>
                             <li>Simulated enterprise network using SOPHOS Firewall</li>
@@ -435,7 +423,7 @@
                     </div>
                 </div>
                 <div class="project-card" style="grid-column: span 1;">
-                    <span class="project-head">Cloud E‑commerce (Coffee)</span>
+                    <span class="project-head"><a href="https://github.com/UnderStuod/Coffee_Website_With_Firebase_N_Cloudinary" target="_blank">Cloud E‑commerce (Coffee)</a></span>
                     <div class="project-desc">
                         <ul>
                             <li>Frontend: HTML, CSS, JS + Bootstrap</li>
@@ -462,7 +450,6 @@
             </div>
         </section>
 
-        <!-- SYSTEM & SECURITY -->
         <section class="section">
             <h2 class="section-title">System & Security</h2>
             <div class="skill-block">
@@ -481,27 +468,25 @@
             </div>
         </section>
 
-        <!-- TOOLS -->
         <section class="section">
             <h2 class="section-title">Tools & Technologies</h2>
             <div class="tools-wrapper">
                 <div class="tools-group">
-                    <div class="label">⚙️ Code IDE</div>
+                    <div class="label"> Code IDE</div>
                     <div class="items">Dev-C++, Visual Studio, VS Code</div>
                 </div>
                 <div class="tools-group">
-                    <div class="label">🛡️ Security Testing</div>
+                    <div class="label"> Security Testing</div>
                     <div class="items">Wireshark, Nmap, hping3, Metasploit</div>
                 </div>
                 <div class="tools-group">
-                    <div class="label">📡 IDS/IPS</div>
+                    <div class="label"> IDS/IPS</div>
                     <div class="items">Snort, iptables</div>
                 </div>
             </div>
         </section>
 
-        <!-- LANGUAGE -->
-        <section class="section">
+            <section class="section">
             <h2 class="section-title">Language</h2>
             <div style="background: #fff; padding: 0.8rem 1.5rem; border: 1px solid #eaeaea;">
                 <strong>English:</strong> Technical reading proficiency (documentation & research papers)
@@ -509,7 +494,7 @@
         </section>
 
         <footer class="footer">
-            CV – Trần Đức Long · Built for GitHub Pages
+            CV – TRAN DUC LONG · Built for GitHub Pages
         </footer>
     </div>
 
@@ -545,13 +530,7 @@
                 }, 2000);
             }
 
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                showToast('📄 Đang tạo CV ...');
-                setTimeout(() => {
-                    showToast('✅ Tải xuống (mô phỏng)');
-                }, 1200);
-            });
+            
 
         })();
     </script>
