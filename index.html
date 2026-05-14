@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tran Duc Long · CV</title>
+    <title>Trần Đức Long · Portfolio</title>
     <style>
-        /* ----- RESET & TYPOGRAPHY (minimal, no color, only black/white/grey) ----- */
+        /* ----- RESET & GLOBAL ----- */
         * {
             margin: 0;
             padding: 0;
@@ -13,107 +13,104 @@
         }
 
         body {
-            background: #f5f5f5;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.5;
-            color: #1e1e1e;
+            background: #fafafa;
+            color: #1a1a1a;
+            line-height: 1.6;
             padding: 2rem 1.5rem;
-            display: flex;
-            justify-content: center;
         }
 
-        .cv-container {
-            max-width: 1000px;
-            width: 100%;
-            background: white;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.05);
-            padding: 2.8rem 2.8rem 2.8rem 2.8rem;
-            border: 1px solid #eaeaea;
-            position: relative;
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: transparent;
         }
 
-        /* ---------- HEADER ---------- */
-        .header {
-            border-bottom: 2px solid #222;
-            padding-bottom: 1.5rem;
-            margin-bottom: 2rem;
+        /* ----- HERO / HEADER (không còn khung giấy) ----- */
+        .hero {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            align-items: baseline;
+            align-items: flex-end;
+            padding: 1.5rem 0 2rem 0;
+            border-bottom: 2px solid #111;
+            margin-bottom: 2.5rem;
         }
 
-        .name-title h1 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            letter-spacing: 0.02em;
+        .hero-left h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
             text-transform: uppercase;
             color: #000;
-            margin-bottom: 0.25rem;
+            line-height: 1.1;
         }
 
-        .contact-line {
-            font-size: 0.95rem;
+        .hero-left .sub-head {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-top: 0.3rem;
             color: #333;
-            margin-top: 0.2rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem 1.2rem;
         }
 
-        .contact-line span {
-            display: inline-block;
+        .hero-right {
+            text-align: right;
+            font-size: 0.95rem;
+            color: #222;
+            line-height: 1.5;
         }
 
-        .contact-line .separator {
-            color: #aaa;
+        .hero-right .contact-item {
+            display: block;
         }
 
-        /* ---------- SECTION GLOBAL ---------- */
-        .section {
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+        .hero-right a {
+            color: #111;
+            text-decoration: none;
+            border-bottom: 1px dotted transparent;
         }
 
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .hero-right a:hover {
+            border-bottom-color: #111;
         }
 
-        .section-title {
-            font-size: 1.2rem;
-            font-weight: 700;
+        /* ----- TYING EFFECT (CAREER OBJECTIVE) ----- */
+        .typing-section {
+            background: #fff;
+            padding: 2rem 2rem 2rem 2rem;
+            margin-bottom: 2.8rem;
+            border-left: 6px solid #111;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .typing-section .label {
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 0.4rem;
-            margin-bottom: 1.2rem;
-            color: #000;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 0.6rem;
         }
 
-        /* ---------- CAREER OBJECTIVE (typing effect) ---------- */
-        .objective-text {
-            font-size: 0.98rem;
-            color: #1e1e1e;
-            padding-right: 0.5rem;
-            margin-bottom: 0.2rem;
-            min-height: 4rem;
+        #typed-container {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: #111;
+            min-height: 5rem;
         }
 
-        .objective-text strong {
-            font-weight: 700;
+        #typed-text {
+            display: inline;
         }
 
         .cursor-blink {
             display: inline-block;
             width: 2px;
-            height: 1.1em;
-            background-color: #222;
-            animation: blink 0.8s step-end infinite;
+            height: 1.4rem;
+            background-color: #111;
+            animation: blink 0.9s step-end infinite;
             vertical-align: text-bottom;
-            margin-left: 2px;
+            margin-left: 3px;
         }
 
         @keyframes blink {
@@ -121,80 +118,104 @@
             50% { opacity: 0; }
         }
 
-        /* ---------- EDUCATION ---------- */
+        /* ----- SECTION GENERAL ----- */
+        .section {
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #000;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.4rem;
+        }
+
+        /* ----- EDUCATION ----- */
         .edu-item {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.2rem;
         }
 
         .edu-item .school {
             font-weight: 700;
-            font-size: 1.05rem;
+            font-size: 1.2rem;
         }
 
         .edu-item .date {
             font-weight: 400;
-            color: #2a2a2a;
+            color: #444;
             font-size: 0.95rem;
         }
 
         .edu-details {
-            margin-top: 0.1rem;
+            margin-top: 0.3rem;
             padding-left: 0.2rem;
         }
 
         .edu-details ul {
             list-style: none;
-            margin-top: 0.3rem;
         }
 
         .edu-details li {
-            font-size: 0.97rem;
-            margin-bottom: 0.15rem;
-            padding-left: 1.2rem;
+            font-size: 1rem;
+            margin-bottom: 0.1rem;
+            padding-left: 1.4rem;
             position: relative;
         }
 
         .edu-details li::before {
-            content: "•";
+            content: "▹";
             position: absolute;
             left: 0.1rem;
             color: #111;
         }
 
-        /* ---------- EXPERIENCES (projects) ---------- */
-        .project-item {
-            margin-bottom: 1.8rem;
+        /* ----- PROJECTS ----- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
         }
 
-        .project-item:last-child {
-            margin-bottom: 0;
+        .project-card {
+            background: #fff;
+            padding: 1.5rem 1.5rem 1.8rem 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            border: 1px solid #eaeaea;
+            transition: all 0.2s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.04);
+            border-color: #bbb;
         }
 
         .project-head {
             font-weight: 700;
-            font-size: 1.0rem;
+            font-size: 1.2rem;
             display: block;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.6rem;
             color: #000;
-        }
-
-        .project-desc {
-            margin-bottom: 0.1rem;
-            padding-left: 0.2rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.4rem;
         }
 
         .project-desc ul {
             list-style: none;
-            margin-top: 0.1rem;
+            margin-top: 0.2rem;
         }
 
         .project-desc li {
             font-size: 0.95rem;
-            margin-bottom: 0.15rem;
+            margin-bottom: 0.3rem;
             padding-left: 1.3rem;
             position: relative;
         }
@@ -203,246 +224,236 @@
             content: "–";
             position: absolute;
             left: 0.1rem;
-            color: #111;
+            color: #222;
         }
 
-        /* ---------- SKILLS (TECHNICAL) ---------- */
+        /* ----- SKILLS BLOCKS ----- */
         .skill-block {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.5rem 1.8rem;
-            margin-top: 0.4rem;
+            gap: 1rem 2rem;
+            background: #fff;
+            padding: 1.5rem;
+            border: 1px solid #eaeaea;
         }
 
         .skill-item {
             display: flex;
-            font-size: 0.96rem;
-            padding: 0.1rem 0;
+            font-size: 1rem;
         }
 
         .skill-item .label {
             font-weight: 600;
-            min-width: 5.5rem;
+            min-width: 7rem;
             color: #000;
         }
 
         .skill-item .value {
-            color: #1a1a1a;
+            color: #222;
         }
 
-        /* ---------- TOOLS (hover effect) ---------- */
+        /* ----- TOOLS (hover effect) ----- */
         .tools-wrapper {
             display: flex;
             flex-wrap: wrap;
-            column-gap: 2.5rem;
-            row-gap: 0.8rem;
+            gap: 2rem;
+            background: #fff;
+            padding: 1.5rem;
+            border: 1px solid #eaeaea;
         }
 
         .tools-group {
-            transition: all 0.2s ease;
-        }
-
-        .tools-group:hover {
-            transform: scale(1.02);
-            background-color: #f8f8f8;
+            transition: all 0.15s ease;
             padding: 0.2rem 0.5rem;
             margin: -0.2rem -0.5rem;
             border-radius: 4px;
-            box-shadow: 0 0 0 1px #ddd;
+        }
+
+        .tools-group:hover {
+            background: #f0f0f0;
+            transform: scale(1.02);
         }
 
         .tools-group .label {
             font-weight: 600;
             margin-bottom: 0.1rem;
+            font-size: 0.95rem;
         }
 
         .tools-group .items {
             font-size: 0.95rem;
         }
 
-        /* ---------- DOWNLOAD BUTTON (dynamic) ---------- */
-        .download-btn {
-            position: absolute;
-            top: 1.8rem;
-            right: 2.8rem;
-            background: #111;
-            color: white;
-            border: none;
-            padding: 0.5rem 1.2rem;
+        /* ----- FOOTER ----- */
+        .footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #ddd;
             font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-            cursor: pointer;
-            border-radius: 20px;
-            transition: all 0.2s ease;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            text-transform: uppercase;
-            z-index: 10;
+            color: #777;
+            text-align: center;
         }
 
-        .download-btn:hover {
-            background: #333;
-            transform: scale(1.02);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .download-btn:active {
-            transform: scale(0.96);
-        }
-
-        .download-btn i {
-            margin-right: 6px;
-        }
-
-        @media (max-width: 640px) {
-            .download-btn {
-                position: static;
-                margin-top: 0.5rem;
-                display: inline-block;
-                width: 100%;
-                text-align: center;
-                border-radius: 6px;
-                padding: 0.6rem;
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
             }
-            .cv-container {
-                padding: 1.8rem 1.2rem;
+            .hero-right {
+                text-align: left;
+                width: 100%;
+            }
+            .project-grid {
+                grid-template-columns: 1fr;
             }
             .skill-block {
                 grid-template-columns: 1fr;
             }
-            .header {
-                flex-direction: column;
+            .hero-left h1 {
+                font-size: 2.6rem;
             }
-            .contact-line {
-                margin-top: 0.4rem;
+            #typed-container {
+                font-size: 1.05rem;
             }
         }
 
-        /* toast notification (simulated) */
-        .toast-message {
+        /* Toast (nếu cần download simulation) */
+        .toast {
             position: fixed;
             bottom: 2rem;
             left: 50%;
             transform: translateX(-50%) translateY(80px);
-            background: #222;
+            background: #111;
             color: #fff;
-            padding: 0.8rem 1.8rem;
+            padding: 0.7rem 1.6rem;
             border-radius: 30px;
             font-size: 0.9rem;
             opacity: 0;
             transition: all 0.4s ease;
             pointer-events: none;
             z-index: 999;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             white-space: nowrap;
         }
 
-        .toast-message.show {
+        .toast.show {
             opacity: 1;
             transform: translateX(-50%) translateY(0);
         }
 
-        .lang-item {
-            font-size: 0.97rem;
+        .btn-outline {
+            display: inline-block;
+            border: 1.5px solid #111;
+            background: transparent;
+            padding: 0.4rem 1.4rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #111;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.2s ease;
+            cursor: pointer;
         }
-        .lang-item strong {
-            font-weight: 600;
+
+        .btn-outline:hover {
+            background: #111;
+            color: #fff;
         }
     </style>
 </head>
 <body>
-    <!-- Toast notification -->
-    <div id="toast" class="toast-message">📄 Đang tải CV ...</div>
+    <div class="container">
 
-    <div class="cv-container">
-        <!-- Download button (simulated) -->
-        <button class="download-btn" id="downloadCV">⬇ Tải CV (PDF)</button>
+        <!-- Toast notification -->
+        <div id="toast" class="toast">📄 Đang tải ...</div>
 
-        <!-- HEADER -->
-        <header class="header">
-            <div class="name-title">
-                <h1>TRAN DUC LONG</h1>
-                <div class="contact-line">
-                    <span>Phu Tho Hoa Ward, Ho Chi Minh City, Vietnam</span>
-                    <span class="separator">•</span>
-                    <span>0932986108</span>
-                    <span class="separator">•</span>
-                    <span>longductran79@outlook.com</span>
-                </div>
+        <!-- HEADER (Hero) -->
+        <header class="hero">
+            <div class="hero-left">
+                <h1>Trần Đức Long</h1>
+                <div class="sub-head">Information Security · Final-year</div>
+            </div>
+            <div class="hero-right">
+                <span class="contact-item">📍 Phú Thọ Hòa, HCMC, Vietnam</span>
+                <span class="contact-item">📞 <a href="tel:0932986108">0932986108</a></span>
+                <span class="contact-item">✉️ <a href="mailto:longductran79@outlook.com">longductran79@outlook.com</a></span>
+                <span style="margin-top: 0.4rem; display: inline-block;">
+                    <button class="btn-outline" id="downloadBtn">⬇ Tải CV (PDF)</button>
+                </span>
             </div>
         </header>
 
-        <!-- CAREER OBJECTIVE with typing -->
-        <section class="section visible" id="objective-section">
-            <h2 class="section-title">CAREER OBJECTIVE</h2>
-            <div id="typing-container" class="objective-text">
-                <!-- text will be injected by JS -->
+        <!-- TYPING SECTION (Nổi bật) -->
+        <div class="typing-section">
+            <div class="label">🎯 Career Objective</div>
+            <div id="typed-container">
                 <span id="typed-text"></span><span class="cursor-blink">|</span>
             </div>
-        </section>
+        </div>
 
         <!-- EDUCATION -->
-        <section class="section" id="edu-section">
-            <h2 class="section-title">EDUCATION</h2>
+        <section class="section">
+            <h2 class="section-title">Education</h2>
             <div class="edu-item">
                 <span class="school">Ho Chi Minh City University of Industry and Trade (HUIT)</span>
-                <span class="date">September 2023 – Present</span>
+                <span class="date">Sep 2023 – Present</span>
             </div>
             <div class="edu-details">
                 <ul>
-                    <li><strong>Bachelor of Information Security</strong> · Status: Final-year student</li>
-                    <li><strong>Relevant Coursework:</strong> Computer Networking, Vulnerability Analysis & Penetration Testing, Web Security, Operating System Security, …</li>
+                    <li><strong>Bachelor of Information Security</strong> · Final-year student</li>
+                    <li><strong>Relevant coursework:</strong> Computer Networking, Vulnerability Analysis & Penetration Testing, Web Security, OS Security</li>
                 </ul>
             </div>
         </section>
 
         <!-- EXPERIENCES / PROJECTS -->
-        <section class="section" id="exp-section">
-            <h2 class="section-title">EXPERIENCES · PROJECTS</h2>
-
-            <div class="project-item">
-                <span class="project-head">SOPHOS Firewall Lab Environment Deployment</span>
-                <div class="project-desc">
-                    <ul>
-                        <li>Built a simulated enterprise network environment using SOPHOS Firewall</li>
-                        <li>Implemented network segmentation including LAN / WAN / DMZ</li>
-                        <li>Configured firewall rules, NAT, Web Filtering, and access control policies</li>
-                        <li>Performed penetration testing and monitored network traffic</li>
-                    </ul>
+        <section class="section">
+            <h2 class="section-title">Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <span class="project-head">SOPHOS Firewall Lab</span>
+                    <div class="project-desc">
+                        <ul>
+                            <li>Simulated enterprise network using SOPHOS Firewall</li>
+                            <li>Configured LAN/WAN/DMZ segmentation</li>
+                            <li>Set firewall rules, NAT, Web Filtering & access control</li>
+                            <li>Performed traffic monitoring & penetration testing</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-
-            <div class="project-item">
-                <span class="project-head">IDS/IPS System Implementation (Snort, iptables, …)</span>
-                <div class="project-desc">
-                    <ul>
-                        <li>Deployed Intrusion Detection System using Snort on Linux (Ubuntu Server)</li>
-                        <li>Developed and customized Snort rules to detect basic network attacks</li>
-                        <li>Integrated iptables for automatic blocking of malicious IP addresses</li>
-                        <li>Simulated attacks from Kali Linux (hping3, nmap, etc.) to test the system</li>
-                    </ul>
+                <div class="project-card">
+                    <span class="project-head">IDS/IPS with Snort & iptables</span>
+                    <div class="project-desc">
+                        <ul>
+                            <li>Deployed Snort on Ubuntu Server</li>
+                            <li>Developed custom rules for network attacks</li>
+                            <li>Integrated iptables for auto-blocking malicious IPs</li>
+                            <li>Simulated attacks (hping3, nmap) from Kali Linux</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-
-            <div class="project-item">
-                <span class="project-head">Cloud-Integrated Coffee E‑commerce Website</span>
-                <div class="project-desc">
-                    <ul>
-                        <li>Developed user interface using HTML, CSS / JavaScript with Bootstrap integration</li>
-                        <li>Integrated Firebase for data storage (order information, login logs, etc.) with real-time synchronization</li>
-                        <li>Used Cloudinary for storing and managing product images to support Firebase data storage</li>
-                    </ul>
+                <div class="project-card" style="grid-column: span 1;">
+                    <span class="project-head">Cloud E‑commerce (Coffee)</span>
+                    <div class="project-desc">
+                        <ul>
+                            <li>Frontend: HTML, CSS, JS + Bootstrap</li>
+                            <li>Firebase for real‑time orders & login logs</li>
+                            <li>Cloudinary for product image storage</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- PROGRAMMING LANGUAGES -->
-        <section class="section" id="lang-section">
-            <h2 class="section-title">PROGRAMMING LANGUAGES</h2>
-            <div class="skill-block" style="grid-template-columns: 1fr;">
+        <section class="section">
+            <h2 class="section-title">Programming Languages</h2>
+            <div class="skill-block">
                 <div class="skill-item">
                     <span class="label">Languages:</span>
-                    <span class="value">C / C++, C#, Python, HTML, CSS, PHP, JavaScript, NodeJS, Shell Scripting (Bash)</span>
+                    <span class="value">C / C++, C#, Python, HTML, CSS, PHP, JavaScript, NodeJS, Shell (Bash)</span>
                 </div>
                 <div class="skill-item">
                     <span class="label">Database:</span>
@@ -451,126 +462,96 @@
             </div>
         </section>
 
-        <!-- SYSTEM & SECURITY KNOWLEDGE -->
-        <section class="section" id="sys-section">
-            <h2 class="section-title">SYSTEM AND SECURITY KNOWLEDGE</h2>
-            <div class="skill-block" style="grid-template-columns: 1fr 1.5fr;">
+        <!-- SYSTEM & SECURITY -->
+        <section class="section">
+            <h2 class="section-title">System & Security</h2>
+            <div class="skill-block">
                 <div class="skill-item">
                     <span class="label">Linux:</span>
                     <span class="value">RHEL, CentOS, Ubuntu</span>
                 </div>
                 <div class="skill-item">
                     <span class="label">Windows:</span>
-                    <span class="value">Windows Server: MCSA 2016</span>
+                    <span class="value">MCSA 2016</span>
                 </div>
                 <div class="skill-item">
-                    <span class="label">Network:</span>
-                    <span class="value">Top 10 OWASP, CEH, …</span>
+                    <span class="label">Security:</span>
+                    <span class="value">Top 10 OWASP, CEH, Vulnerability assessment, IDS/IPS, firewall</span>
                 </div>
-            </div>
-            <div style="margin-top: 0.2rem; font-size: 0.95rem; padding-left: 0.2rem;">
-                <span style="font-weight: 600;">Security concepts:</span> Vulnerability assessment, IDS/IPS, firewall, web security, network traffic analysis
             </div>
         </section>
 
-        <!-- TOOLS AND TECHNOLOGIES (with hover effect) -->
-        <section class="section" id="tools-section">
-            <h2 class="section-title">TOOLS AND TECHNOLOGIES</h2>
+        <!-- TOOLS -->
+        <section class="section">
+            <h2 class="section-title">Tools & Technologies</h2>
             <div class="tools-wrapper">
                 <div class="tools-group">
-                    <div class="label">Code IDE:</div>
-                    <div class="items">Dev-C++, Visual Studio, Visual Studio Code</div>
+                    <div class="label">⚙️ Code IDE</div>
+                    <div class="items">Dev-C++, Visual Studio, VS Code</div>
                 </div>
                 <div class="tools-group">
-                    <div class="label">Security Testing:</div>
-                    <div class="items">Wireshark, Nmap, hping3, Metasploit, …</div>
+                    <div class="label">🛡️ Security Testing</div>
+                    <div class="items">Wireshark, Nmap, hping3, Metasploit</div>
                 </div>
                 <div class="tools-group">
-                    <div class="label">IDS/IPS:</div>
-                    <div class="items">Snort, iptables, …</div>
+                    <div class="label">📡 IDS/IPS</div>
+                    <div class="items">Snort, iptables</div>
                 </div>
             </div>
         </section>
 
         <!-- LANGUAGE -->
-        <section class="section" id="lang-final" style="margin-bottom: 0.5rem;">
-            <h2 class="section-title">LANGUAGE</h2>
-            <div class="lang-item">
-                <strong>English:</strong> Technical reading proficiency (documentation &amp; research papers)
+        <section class="section">
+            <h2 class="section-title">Language</h2>
+            <div style="background: #fff; padding: 0.8rem 1.5rem; border: 1px solid #eaeaea;">
+                <strong>English:</strong> Technical reading proficiency (documentation & research papers)
             </div>
         </section>
 
-        <div style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 0.8rem; font-size: 0.7rem; color: #888; text-align: right;">
-            CV – Tran Duc Long
-        </div>
+        <footer class="footer">
+            CV – Trần Đức Long · Built for GitHub Pages
+        </footer>
     </div>
 
     <script>
         (function() {
-            // ----- TYPING EFFECT (CAREER OBJECTIVE) -----
-            const textToType = "Final-year Information Security student with a strong foundation in computer networking, Linux/Windows operating systems, and system security. Seeking an internship position in Security / Network / System Administration to gain hands-on industry experience, improve technical skills, and contribute to building secure and reliable IT infrastructures.";
+            // ----- TYPING EFFECT (Career Objective) -----
+            const fullText = "Final-year Information Security student with a strong foundation in computer networking, Linux/Windows operating systems, and system security. Seeking an internship position in Security / Network / System Administration to gain hands-on industry experience, improve technical skills, and contribute to building secure and reliable IT infrastructures.";
 
             const typedSpan = document.getElementById('typed-text');
             let index = 0;
-            let isTyping = true;
 
             function typeChar() {
-                if (index < textToType.length) {
-                    typedSpan.textContent += textToType.charAt(index);
+                if (index < fullText.length) {
+                    typedSpan.textContent += fullText.charAt(index);
                     index++;
-                    setTimeout(typeChar, 14); // speed
+                    setTimeout(typeChar, 18);
                 } else {
-                    isTyping = false;
-                    // blink cursor remains
+                    // keep cursor blinking
                 }
             }
 
-            // start typing after small delay
-            setTimeout(typeChar, 400);
-
-            // ----- SCROLL REVEAL (intersection observer) -----
-            const sections = document.querySelectorAll('.section:not(.visible)');
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.15,
-                rootMargin: '0px 0px -30px 0px'
-            });
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
+            setTimeout(typeChar, 300);
 
             // ----- DOWNLOAD BUTTON (simulated) -----
-            const downloadBtn = document.getElementById('downloadCV');
+            const btn = document.getElementById('downloadBtn');
             const toast = document.getElementById('toast');
 
-            function showToast(message) {
-                toast.textContent = message;
+            function showToast(msg) {
+                toast.textContent = msg;
                 toast.classList.add('show');
                 setTimeout(() => {
                     toast.classList.remove('show');
-                }, 2200);
+                }, 2000);
             }
 
-            downloadBtn.addEventListener('click', function(e) {
+            btn.addEventListener('click', function(e) {
                 e.preventDefault();
-                showToast('📄 Đang tải CV ...');
-                // simulate loading, then "done"
+                showToast('📄 Đang tạo CV ...');
                 setTimeout(() => {
-                    showToast('✅ Tải xuống thành công (mô phỏng)');
+                    showToast('✅ Tải xuống (mô phỏng)');
                 }, 1200);
             });
-
-            // ----- TOOLTIP / HOVER extra (already in CSS) -----
-
-            // ensure that the first (objective) section is visible
-            document.getElementById('objective-section').classList.add('visible');
 
         })();
     </script>
